@@ -1,0 +1,33 @@
+- name: copiying mongo.repo
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongo.repo
+
+- name: installing mogodb client
+  ansible.builtin.package:
+    name: mongodb-org-shell
+    state: present
+
+- name: get the catalogue entries count
+  ansible.builtin.command: mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("{{component}}"); db.products.count()'
+  register: entries_count
+  when: componet == "catalogue"
+
+- name: get the user entries count
+  ansible.builtin.command: mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("{{component}}"); db.users.count()'
+  register: entries_count
+  when: componet == "user"
+
+- name: loading catalogue data
+  ansible.builtin.command: mongo --host mongodb.pjdevops.online < /app/schema/"{{component}}".js
+  when: entries_count.stdout == "0" and component == "catalogue" or component == "user"
+  ignore_errors: true
+
+# - name: loading user data
+#   ansible.builtin.command: mongo --host mongodb.pjdevops.online < /app/schema/"{{component}}".js
+#   when: entries.stdout == "0" and component == "user"
+#   ignore_errors: true
+
+
+
+
