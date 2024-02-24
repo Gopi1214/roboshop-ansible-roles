@@ -1,4 +1,4 @@
-- name: app-setup
+- name: apps etup for user
   ansible.builtin.import_roles:
     name: common
     tasks_from: app-setup
