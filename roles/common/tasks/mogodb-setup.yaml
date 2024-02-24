@@ -14,7 +14,7 @@
   when: componet == "catalogue"
 
 - name: get the user entries count
-  ansible.builtin.command: mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("users"); db.users.count()'
+  ansible.builtin.command: mongo --host mongodb.pjdevops.online --quiet --eval 'db = db.getSiblingDB("user"); db.users.count()'
   register: entries_count
   when: componet == "user"
 
