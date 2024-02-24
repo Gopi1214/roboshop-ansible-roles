@@ -1,21 +1,21 @@
-MONGODB_HOST: mongodb.pjdevops.online
+MONGODB_HOST: mongodb.gmdproducts.online
 
-CATALOGUE_HOST: catalogue.pjdevops.online
+CATALOGUE_HOST: catalogue.gmdproducts.online
 
-USER_HOST: user.pjdevops.online
+USER_HOST: user.gmdproducts.online
 
-CART_HOST: cart.pjdevops.online
+CART_HOST: cart.gmdproducts.online
 
-WEB_HOST: web.pjdevops.online
+WEB_HOST: web.gmdproducts.online
 
-REDIS_HOST: redis.pjdevops.online
+REDIS_HOST: redis.gmdproducts.online
 
-MYSQL_HOST: mysql.pjdevops.online
+MYSQL_HOST: mysql.gmdproducts.online
 
-SHIPPING_HOST: shipping.pjdevops.online
+SHIPPING_HOST: shipping.gmdproducts.online
 
-RABBITMQ_HOST: rabbitmq.pjdevops.online
+RABBITMQ_HOST: rabbitmq.gmdproducts.online
 
-PAYMENT_HOST: payment.pjdevops.online
+PAYMENT_HOST: payment.gmdproducts.online
 
-DISPATCH_HOST: dispatch.pjdevops.online
+DISPATCH_HOST: dispatch.gmdproducts.online
