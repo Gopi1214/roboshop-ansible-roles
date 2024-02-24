@@ -19,7 +19,7 @@
     chdir: /app
 
 - name: installing mysql client
-  ansible.builtin.packsge:
+  ansible.builtin.package:
     name: mysql
     state: present
 
