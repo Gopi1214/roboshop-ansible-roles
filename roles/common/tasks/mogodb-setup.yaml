@@ -27,3 +27,4 @@
 #   ansible.builtin.command: mongo --host mongodb.pjdevops.online < /app/schema/"{{component}}".js
 #   when: entries.stdout == "0" and component == "user"
 #   ignore_errors: true
+# hi
