@@ -1,5 +1,5 @@
 - name: apps etup for user
-  ansible.builtin.import_roles:
+  ansible.builtin.import_role:
     name: common
     tasks_from: app-setup
 
@@ -9,12 +9,12 @@
     tasks_from: nodejs
 
 - name: mongodb-setup
-  ansible.builtin.import_roles:
+  ansible.builtin.import_role:
     name: common
     tasks_from: mongodb-setup
 
 - name: systemd.yaml
-  ansible.builtin.import_roles:
+  ansible.builtin.import_role:
     name: common
     tasks_from: systemd
 
