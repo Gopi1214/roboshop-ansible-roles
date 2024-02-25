@@ -1,39 +1,17 @@
-- name: instaling maven
-  ansible.builtin.package:
-    name: maven
-    state: present
-
 - name: app-setup
   ansible.builtin.import_role:
     name: common
     tasks_from: app-setup
 
-- name: downloading the dependencies
-  ansible.builtin.command: mvn clean package
-  args: 
-    chdir: /app
+- name: java setup and renaming the jar file
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: java
 
-- name: renaming shipping jar file
-  ansible.builtin.command: mv target/shipping-1.0.jar shipping.jar
-  args: 
-    chdir: /app
-
-- name: installing mysql client
-  ansible.builtin.package:
-    name: mysql
-    state: present
-
-- name: checking cites schema exists or not
-  ansible.builtin.command: mysql -h mysql.gmdproducts.online -uroot -p{{mysql_password}} -sN -e "SELECT COUNT(*) FROM INFORMATION_SCHEMA.SCHEMATA WHERE SCHEMA_NAME = 'cities'"
-  register: cities_schema
-
-- name: debug the shippinmg count
-  ansible.builtin.debug:
-    msg: "cities count:{{cities_schema}}"
-
-- name: loading the shipping schema
-  ansible.builtin.command: mysql -h mysql.gmdproducts.online -uroot -p{{mysql_password}} < /app/schema/shipping.sql 
-  when: cities_schema.stdout == "0"
+- name: mysql-setup
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mysql-setup
 
 - name: systemctl service
   ansible.builtin.import_role:

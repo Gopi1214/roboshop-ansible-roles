@@ -8,12 +8,19 @@
     name: common
     tasks_from: nodejs
     
-# - name: mongodb
-#   ansible.builtin.import_role:
-#     name: common
-#     tasks_from: mongodb-setup
+- name: mongodb
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: mongodb-setup
 
 - name: systemd
   ansible.builtin.import_role:
     name: common
     tasks_from: systemd
+
+- name: deplyment if there is update
+  ansible.builtin.import_role:
+    name: common
+    tasks_from: deplyment
+
+
