@@ -10,18 +10,21 @@
 
 - name: "get the catalogue entries count"
   ansible.builtin.command: mongo --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("catalogue"); db.products.count()'
-  register: entries_count
+  register: catalogue_entries_count
   when: component == "catalogue"
 
 - name: get the user entries count
   ansible.builtin.command: mongo --host {{MONGODB_HOST}} --quiet --eval 'db = db.getSiblingDB("user"); db.users.count()'
-  register: entries_count
+  register: user_entries_count
   when: component == "user"
 
 - name: loading catalogue data
   ansible.builtin.command: "mongo --host {{MONGODB_HOST}} < /app/schema/{{component}}.js"
-  when: component == "catalogue" or component == "user" and entries_count.stdout == "0"
+  when: component == "catalogue" and catalogue_entries_count.stdout == "0"
   # ignore_errors: true
+- name: loading user data
+  ansible.builtin.command: "mongo --host {{MONGODB_HOST}} < /app/schema/{{component}}.js"
+  when: component == "user" and user_entries_count.stdout == "0"
 
 # - name: loading user data
 #   ansible.builtin.command: mongo --host mongodb.gmdproducts.online < /app/schema/"{{component}}".js
