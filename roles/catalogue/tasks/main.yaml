@@ -12,6 +12,7 @@
   ansible.builtin.import_role:
     name: common
     tasks_from: mongodb-setup
+  ignore_errors: true
 
 - name: systemd
   ansible.builtin.import_role:
