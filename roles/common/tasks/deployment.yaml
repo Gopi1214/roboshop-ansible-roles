@@ -44,7 +44,7 @@
   args:
     chdir: /app
   tags: 
-    - deplyment
+    - deployment
 
 - name: "start and enable the {{component}}"
   ansible.builtin.service:
@@ -52,7 +52,7 @@
     state: restarted
     enabled: yes
   tags: 
-    - deplyment
+    - deployment
 
 
 

@@ -18,9 +18,9 @@
     name: common
     tasks_from: systemd
 
-- name: deplyment if there is update
+- name: deployment if there is update
   ansible.builtin.import_role:
     name: common
-    tasks_from: deplyment
+    tasks_from: deployment
 
 
